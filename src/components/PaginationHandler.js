@@ -4,7 +4,7 @@ import { useState } from "react";
 export default function PaginationHandler() {
   const [Limit, setLimit] = useState(15);
   const [Page, setPage] = useState(1);
-  const pages = Math.Round(405 / Limit);
+  const pages = 405 / Limit;
   const pagelist = [];
   for (let i = 1; i <= pages; i++) {
     pagelist.push(i);
