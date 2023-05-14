@@ -1,5 +1,5 @@
 import AppRouter from "../router/AppRouter";
-import Nav from "../router/Navigation";
+import Nav from "../components/Navigation";
 
 export default function Layout() {
   return (
