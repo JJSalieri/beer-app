@@ -3,14 +3,14 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Card from "./Card";
 
-export default function CardList() {
-  const baseURL = "https://api.punkapi.com/v2/beers?page=1&per_page=25";
+export default function CardList(props) {
+  const baseURL = `https://api.punkapi.com/v2/beers?page=${props.page}&per_page=${props.limit}`;
   const [data, setData] = useState(null);
   useEffect(() => {
     axios.get(baseURL).then((response) => {
       setData(response.data);
     });
-  }, []);
+  });
   if (!data) return console.log("data is temporarily unaviable");
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 p-8 px-12 gap-4">
@@ -20,3 +20,5 @@ export default function CardList() {
     </div>
   );
 }
+
+//405
