@@ -2,9 +2,9 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Card from "./Card";
-const baseURL = "https://api.punkapi.com/v2/beers?page=1&per_page=25";
 
 export default function CardList() {
+  const baseURL = "https://api.punkapi.com/v2/beers?page=1&per_page=25";
   const [data, setData] = useState(null);
   useEffect(() => {
     axios.get(baseURL).then((response) => {
