@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 export default function App() {
   return (
     <div className="h-screen bg-gray-300 text-center py-24 cursor-pointer">

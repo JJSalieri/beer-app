@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 export default function Beer() {
+  // fetch API
   let params = useParams();
   const [data, setData] = useState(null);
   useEffect(() => {
@@ -15,6 +16,7 @@ export default function Beer() {
       });
   }, [params.beerId]);
   if (!data) return console.log("data is temporarily unaviable");
+
   return (
     <div>
       {data.map((a) => {

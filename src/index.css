@@ -9,4 +9,5 @@
 }
 body {
   font-family: -apple-system, "Roboto", "Oxygen", "Ubuntu", sans-serif;
+  overflow-x: hidden;
 }
