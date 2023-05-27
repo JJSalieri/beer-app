@@ -6,7 +6,9 @@ import Spinner from "../components/Spinner";
 
 export default function Beer() {
   let params = useParams();
+  
   const { data, error, loader } = useBeer(params.beerId);
+
   if (loader) return <Spinner />;
   return (
     <div>

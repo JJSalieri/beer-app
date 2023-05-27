@@ -9,10 +9,15 @@
 # THEORY
 
 # 1. what is a hook
+hooks allow you to use state and other React features in functional components, which were traditionally stateless. Prior to hooks, class components were used to manage state and lifecycle methods in React applications.
 
 # 2. what is react query
 
+React Query is a popular library for managing and caching server state in React applications. It provides a set of hooks and components that make it easy to fetch, cache, and update data from an API, and keep it synchronized with the UI.
+The main goal of React Query is to simplify the process of handling asynchronous data in React applications. 
+
 # 3. what are the lifecycles
+ lifecycles refer to the various stages or phases that a React component goes through during its existence. Lifecycles provide developers with specific methods that can be overridden to perform certain actions at different points in a component's life.
 
 # 4. what are differences between componentDidMounth() componentWillUpdate() componentDidUnmount() and useEffect()
 
