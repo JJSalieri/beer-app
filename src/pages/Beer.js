@@ -3,16 +3,35 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useBeer } from "../hooks/useBeer";
 import Spinner from "../components/Spinner";
+import axios from "axios";
+import { useQuery } from "react-query";
 
 export default function Beer() {
   let params = useParams();
-  
-  const { data, error, loader } = useBeer(params.beerId);
+  const { isLoading, isError, data, error, refetch } = useQuery(
+    ["beer"],
+    () => {
+      axios
+        .get(`https://api.punkapi.com/v2/beers/${params.beerId}`)
+        .then((res) =>  res.data);
+    }
+  );
+  // const { data, error, loader } = useBeer(params.beerId);
 
-  if (loader) return <Spinner />;
+  if (isLoading) return <Spinner />;
+
   return (
     <div>
-      {error && <span>{error}</span>}
+      {isError && <span>{error}</span>}
+      {!data && (
+        <button
+          type="button"
+          onClick={refetch}
+          className="m-5 px-5 bg-gray-900 w-48 h-8 text-gray-100 text-center font-bold text-xl"
+        >
+          try again
+        </button>
+      )}
       {data &&
         data.map((a) => {
           return (

@@ -4,14 +4,6 @@ import CardList from "./CardList";
 export default function PaginationHandler() {
   const [limit, setLimit] = useState(15);
   const [Page, setPage] = useState(1);
-
-   
-
-  useEffect(() => {
-     const params = new URLSearchParams(document.location.search);
-    setLimit(params.get("limit"));
-  }); 
-
   const pages = 325 / limit;
   const pagelist = [];
   for (let i = 1; i <= pages; i++) {
@@ -19,6 +11,18 @@ export default function PaginationHandler() {
   }
   return (
     <div>
+      <select
+        name="beers"
+        className="mt-8 ml-12 p-2 cursor-pointer"
+        onChange={(e) => {
+          setLimit(e.target.value);
+        }}
+      >
+        <option value={15}>15</option>
+        <option value={25}>25</option>
+        <option value={50}>50</option>
+        <option value={75}>75</option>
+      </select>
       <CardList page={Page} limit={limit} />
       <div className="w-screen flex justify-center my-8 flex-wrap">
         {pagelist.map((page) => {
