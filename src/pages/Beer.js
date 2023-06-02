@@ -3,40 +3,22 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useBeer } from "../hooks/useBeer";
 import Spinner from "../components/Spinner";
-import axios from "axios";
-import { useQuery } from "react-query";
 
 export default function Beer() {
   let params = useParams();
-  const { isLoading, isError, data, error, refetch } = useQuery(
-    ["beer"],
-    () => {
-      axios
-        .get(`https://api.punkapi.com/v2/beers/${params.beerId}`)
-        .then((res) =>  res.data);
-    }
-  );
-  // const { data, error, loader } = useBeer(params.beerId);
-
-  if (isLoading) return <Spinner />;
+  const { data, error, loader } = useBeer(params.beerId);
+  if (loader) return <Spinner />;
 
   return (
     <div>
-      {isError && <span>{error}</span>}
-      {!data && (
-        <button
-          type="button"
-          onClick={refetch}
-          className="m-5 px-5 bg-gray-900 w-48 h-8 text-gray-100 text-center font-bold text-xl"
-        >
-          try again
-        </button>
-      )}
+      {error && <span>{error}</span>}
       {data &&
         data.map((a) => {
           return (
             <div key={a.id} className="grid grid-cols-1 md:grid-cols-2">
-              <img src={a.image_url} alt={a.name} className="h-full p-16" />
+              <div className="w-full flex justify-center">
+                <img src={a.image_url} alt={a.name} className="h-[80vh] p-16" />
+              </div>
               <div className="pt-20 text-start">
                 <div className="pb-5">
                   <h1 className="font-bold text-4xl text-center">{a.name}</h1>
