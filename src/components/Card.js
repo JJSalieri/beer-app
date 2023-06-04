@@ -17,7 +17,6 @@ export default function Card(props) {
       <button
         className="mt-3 pb-2"
         onClick={() => {
-            
           const old = JSON.parse(localStorage.getItem("items") || "[]");
           old.push(props.name);
           const uniqueItems = [];
