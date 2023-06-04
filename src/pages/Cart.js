@@ -1,9 +1,10 @@
 
 
-export default function Cart() {
+export default function CartPage() {
   const items = JSON.parse(localStorage.getItem("items") || "[]");
+
   return (
-    <dialog id="cart" className="absolute mt-12 h-[300px] w-64">
+    <div>
       <h1 className="font-bold mt-5 ml-5 text-xl">Your Cart</h1>
       {items.map((item) => {
         return (
@@ -14,14 +15,14 @@ export default function Cart() {
                 localStorage.setItem("items", JSON.stringify(items));
                 document.getElementById(item).style.display = "none";
               }}
+              className="bg-[#f00] font-bold text-white p-2 rounded-lg"
             >
               remove
             </button>{" "}
-            <span>{item}</span>
+            <span className="font-bold">{item}</span>
           </div>
         );
       })}
-      <button className="absolute top-0 right-0 m-2 text-xl">X</button>
-    </dialog>
+    </div>
   );
 }

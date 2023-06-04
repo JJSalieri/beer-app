@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 export default function Card(props) {
-  const dialog = document.getElementById("cart");
+  const [isCart, setCart] = useState(false);
+
   return (
     <div className="bg-slate-200 w-72 text-center">
       <Link to={`/beer/${props.id}`}>
@@ -15,7 +17,7 @@ export default function Card(props) {
       <h2 className="px-3 pb-1 text-sm font-semibold ">{props.tagline}</h2>
       <h3 className="text-sm font-semibold">since {props.first}</h3>
       <button
-        className="mt-3 pb-2"
+        className={`mt-3 pb-2 ${isCart ? "text-[#04cc0a]" : "text-black"}`}
         onClick={() => {
           const old = JSON.parse(localStorage.getItem("items") || "[]");
           old.push(props.name);
@@ -25,10 +27,11 @@ export default function Card(props) {
               uniqueItems.push(c);
             }
           });
+          setCart(true);
           localStorage.setItem("items", JSON.stringify(uniqueItems));
         }}
       >
-        add to cart
+        {isCart ? <Link to='/cart'>successfully added</Link> : "add to cart"}
       </button>
     </div>
   );
