@@ -10,6 +10,7 @@ export default function CardList(props) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 p-8 px-12 gap-3">
       {error && <span>{error}</span>}
+      
       {data &&
         data.map((beer) => {
           return (
