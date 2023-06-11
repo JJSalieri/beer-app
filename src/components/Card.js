@@ -1,8 +1,24 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Card(props) {
   const [isCart, setCart] = useState(false);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("items") || "[]");
+    data.forEach((item) => {
+      if (item === props.name) {
+        setCart(true);
+      }
+    });
+
+    data.forEach((x) => {
+      if (x.name === props.name) {
+        setCount(x.count);
+      }
+    });
+  }, []);
 
   return (
     <div className="bg-slate-200 w-72 text-center">
@@ -20,18 +36,24 @@ export default function Card(props) {
         className={`mt-3 pb-2 ${isCart ? "text-[#04cc0a]" : "text-black"}`}
         onClick={() => {
           const old = JSON.parse(localStorage.getItem("items") || "[]");
-          old.push(props.name);
-          const uniqueItems = [];
-          old.forEach((c) => {
-            if (!uniqueItems.includes(c)) {
-              uniqueItems.push(c);
-            }
+          setCount(count + 1);
+          old.push({
+            name: props.name,
+            count: count,
           });
+          if (count !== 0) {
+            old.forEach((x) => {
+              if (x.name === props.name) {
+                old.splice(old.indexOf(x), 1);
+              }
+            });
+          }
+
           setCart(true);
-          localStorage.setItem("items", JSON.stringify(uniqueItems));
+          localStorage.setItem("items", JSON.stringify(old));
         }}
       >
-        {isCart ? <Link to='/cart'>successfully added</Link> : "add to cart"}
+        {isCart ? `in the cart: ${count}` : "add to cart"}
       </button>
     </div>
   );
