@@ -12,7 +12,7 @@ export default function Card(props) {
         setCart(true);
       }
     });
-
+    
     data.forEach((x) => {
       if (x.name === props.name) {
         setCount(x.count);
@@ -21,19 +21,19 @@ export default function Card(props) {
   }, []);
 
   return (
-    <div className="bg-slate-200 w-72 text-center">
+    <div className="border shadow-sm hover:shadow-md border-1 w-64 text-center cursor-pointer">
       <Link to={`/beer/${props.id}`}>
-        <div className="flex justify-center pt-5 cursor-pointer">
-          <img src={props.img} alt={props.name} className="h-64" />
+        <div className="flex justify-center pt-5">
+          <img src={props.img} alt={props.name} className="h-48" />
         </div>
-        <h1 className="pt-5 pb-5 text-2xl font-bold cursor-pointer">
-          {props.name}
-        </h1>
+        <h1 className="pt-5 pb-1 text-lg font-bold">{props.name}</h1>
       </Link>
-      <h2 className="px-3 pb-1 text-sm font-semibold ">{props.tagline}</h2>
-      <h3 className="text-sm font-semibold">since {props.first}</h3>
+      <h2 className="pb-1 text-sm">{props.tagline}</h2>
+      <h3 className="text-sm">
+        since <span className=" font-semibold"> {props.first}</span>
+      </h3>
       <button
-        className={`mt-3 pb-2 ${isCart ? "text-[#04cc0a]" : "text-black"}`}
+        className={`mt-3 pb-2 text-black`}
         onClick={() => {
           const old = JSON.parse(localStorage.getItem("items") || "[]");
           setCount(count + 1);
@@ -53,7 +53,16 @@ export default function Card(props) {
           localStorage.setItem("items", JSON.stringify(old));
         }}
       >
-        {isCart ? `in the cart: ${count}` : "add to cart"}
+        {isCart ? (
+          <div className="absolute -mt-[330px] ml-32 h-8 w-8 bg-[#000000] rounded-3xl">
+            <div className="mt-1 text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-red-400">
+              {count}
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+        add to cart
       </button>
     </div>
   );

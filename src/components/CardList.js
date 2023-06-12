@@ -8,7 +8,7 @@ export default function CardList(props) {
   const { data, error, loader } = useBeers(props.page, props.limit);
   if (loader) return <Spinner />;
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 p-8 px-12 gap-3">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-8 px-16 gap-3">
       {error && <span>{error}</span>}
       
       {data &&

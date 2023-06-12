@@ -14,7 +14,11 @@ export default function Item(props) {
   }, []);
 
   return (
-    <div key={item} id={item.name} className="mt-3 ml-5">
+    <div
+      key={item}
+      id={item.name}
+      className="mt-3 ml-5 bg-gray-900 text-white w-[90vw] rounded-md"
+    >
       <button
         onClick={() => {
           const old = JSON.parse(localStorage.getItem("items") || "[]");
@@ -36,11 +40,30 @@ export default function Item(props) {
           }
           localStorage.setItem("items", JSON.stringify(old));
         }}
-        className="bg-[#f00] font-bold text-white p-2 rounded-lg"
+        className="text-[#f00] font-bold p-2 rounded-lg"
       >
         remove
       </button>
-      <span className="font-bold">
+      <button
+        className="text-[#62dd46] font-bold p-2 rounded-lg"
+        onClick={() => {
+          const old = JSON.parse(localStorage.getItem("items") || "[]");
+          setCount(count + 1);
+          old.push({
+            name: item.name,
+            count: count,
+          });
+          old.forEach((x) => {
+            if (x.name === item.name) {
+              old.splice(old.indexOf(x), 1);
+            }
+          });
+          localStorage.setItem("items", JSON.stringify(old));
+        }}
+      >
+        add
+      </button>
+      <span className="font-bold ml-5">
         {item.name} ( {count + 1} )
       </span>
     </div>
