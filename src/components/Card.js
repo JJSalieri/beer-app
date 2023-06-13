@@ -21,7 +21,7 @@ export default function Card(props) {
   }, []);
 
   return (
-    <div className="border shadow-sm hover:shadow-md border-1 w-64 text-center cursor-pointer">
+    <div className="border shadow-sm hover:shadow-md border-1 w-64 text-center cursor-pointer mx-auto">
       <Link to={`/beer/${props.id}`}>
         <div className="flex justify-center pt-5">
           <img src={props.img} alt={props.name} className="h-48" />
