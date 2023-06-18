@@ -9,7 +9,13 @@ export default function CardList(props) {
   if (loader) return <Spinner />;
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-8 px-16 gap-3 center">
+      <div
+        className={
+          props.layout === "grid"
+            ? `grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-8 px-16 gap-3 center`
+            : `flex-row p-8 px-4`
+        }
+      >
         {error && <span>{error}</span>}
 
         {data &&
@@ -25,6 +31,7 @@ export default function CardList(props) {
                     name={beer.name}
                     tagline={beer.tagline}
                     first={beer.first_brewed}
+                    layout={props.layout}
                   />
                 )}
               </div>
