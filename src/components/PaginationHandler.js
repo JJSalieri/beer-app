@@ -13,10 +13,10 @@ export default function PaginationHandler() {
   }
   return (
     <div>
-      <div className="">
+      <div>
         <select
           name="beers"
-          className="mt-8 ml-12 p-2 cursor-pointer"
+          className="mt-8 ml-12 p-2 cursor-pointer dark:bg-gray-900"
           onChange={(e) => {
             setLimit(e.target.value);
           }}
@@ -28,7 +28,7 @@ export default function PaginationHandler() {
         </select>
         <select
           name="layout"
-          className="mt-8 ml-12 p-2 cursor-pointer"
+          className="mt-8 ml-12 p-2 cursor-pointer dark:bg-gray-900"
           onChange={(e) => {
             setLayout(e.target.value);
           }}
@@ -37,14 +37,14 @@ export default function PaginationHandler() {
           <option value={"list"}>list</option>
         </select>
       </div>
-      <CardList page={Page} limit={limit} layout={layout}/>
+      <CardList page={Page} limit={limit} layout={layout} />
       <div className="w-screen flex justify-center my-8 flex-wrap">
         {pagelist.map((page) => {
           return (
             <span
               key={page}
               className={`mx-2 my-1 cursor-pointer ${
-                page === Page ? "bg-slate-400" : "bg-slate-300"
+                page === Page ? "bg-slate-400 dark:bg-slate-600" : "bg-slate-300 dark:bg-slate-500"
               } py-1 px-2`}
               onClick={() => setPage(page)}
             >

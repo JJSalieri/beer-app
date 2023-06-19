@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function App() {
   return (
-    <div className="h-screen bg-gray-300 text-center py-24 cursor-pointer">
+    <div className="h-screen dark:bg-gray-800 bg-gray-300 text-center py-24 cursor-pointer">
       <h1 className="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-red-400">
         Punk Beers
       </h1>

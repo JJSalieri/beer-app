@@ -31,7 +31,7 @@ export default function Beer() {
 
   if (loader) return <Spinner />;
   return (
-    <div>
+    <div className="h-screen">
       {error && <span>{error}</span>}
       {data &&
         data.map((a) => {

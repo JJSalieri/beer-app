@@ -25,8 +25,8 @@ export default function Card(props) {
     <div
       className={
         layout === "grid"
-          ? ` border shadow-sm hover:shadow-md border-1 w-64 text-center cursor-pointer mx-auto`
-          : ` border shadow-sm hover:shadow-md border-1 w-full flex text-center cursor-pointer mx-auto my-12`
+          ? ` border shadow-sm dark:border-none hover:shadow-md border-1 w-64 text-center cursor-pointer mx-auto dark:bg-gray-700`
+          : ` border shadow-sm dark:border-gray-900 hover:shadow-md border-1 w-full flex text-center cursor-pointer mx-auto my-12`
       }
     >
       <Link to={`/beer/${props.id}`}>
@@ -58,8 +58,8 @@ export default function Card(props) {
         <button
           className={
             layout === "grid"
-              ? `mt-3 pb-2 text-black`
-              : `mx-auto bg-yellow-300 p-2 rounded-md font-bold`
+              ? `mt-3 pb-2 text-black dark:text-white`
+              : `mx-auto bg-yellow-300 p-2 rounded-md font-bold dark:text-black`
           }
           onClick={() => {
             const old = JSON.parse(localStorage.getItem("items") || "[]");
